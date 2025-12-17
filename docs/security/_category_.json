@@ -1,0 +1,8 @@
+{
+  "label": "Security",
+  "position": 3,
+  "link": {
+    "type": "generated-index",
+    "description": "Security configuration and AWS IAM policies for CloudAvocado"
+  }
+}
