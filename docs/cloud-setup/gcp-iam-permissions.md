@@ -1,5 +1,5 @@
 ---
-sidebar_position: 4
+sidebar_position: 3
 description: IAM permissions the CloudAvocado service account needs on each Google Cloud project you connect.
 ---
 

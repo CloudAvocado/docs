@@ -1,5 +1,5 @@
 ---
-sidebar_position: 2
+sidebar_position: 5
 description: Resource types CloudAvocado supports on AWS, Google Cloud, Azure, and MongoDB Atlas, and the features available for each.
 ---
 

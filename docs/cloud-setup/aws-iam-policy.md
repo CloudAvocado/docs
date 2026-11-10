@@ -1,5 +1,5 @@
 ---
-sidebar_position: 3
+sidebar_position: 2
 description: AWS IAM policies CloudAvocado uses to access your AWS resources, the recommended default policy and a read-only alternative.
 ---
 
