@@ -15,8 +15,8 @@ This page lists the resource types CloudAvocado supports on AWS, Google Cloud, A
 | **Tagging**         | Tags assigned in CloudAvocado are written back to the resource on the provider side (AWS tags, Google Cloud labels, Azure tags, MongoDB Atlas tags). |
 | **Scheduling**      | The resource can be assigned a schedule that stops and starts it automatically, and can be stopped and started manually.                             |
 | **Metrics**         | Utilization metrics (CPU, memory, connections, etc.) are collected from the provider's monitoring API.                                               |
-| **Cost**            | Projected monthly cost and potential savings (from scheduling and recommendations) are calculated from AWS price lists.                              |
 | **Recommendations** | Resource-specific cost optimization recommendations (idle, rightsizing, Compute Optimizer, etc.).                                                    |
+| **Cost**            | Projected monthly cost and potential savings (from scheduling and recommendations) are calculated from AWS price lists.                              |
 | **Emissions**       | Carbon emission estimates are calculated.                                                                                                            |
 
 :::info
@@ -25,43 +25,46 @@ When scheduling stops a resource that has no native stop operation, the resource
 
 ## Amazon Web Services (AWS)
 
-| Resource type               | Discovery | Tagging | Scheduling | Metrics | Cost  | Recommendations | Emissions |
-| --------------------------- | :-------: | :-----: | :--------: | :-----: | :---: | :-------------: | :-------: |
-| EC2 Instance                |     ✅     |    ✅    |     ✅      |    ✅    |   ✅   |        ✅        |     ✅     |
-| EBS Volume                  |     ✅     |    ✅    |     —      |    ✅    |   ✅   |        ✅        |     —     |
-| Auto Scaling Group          |     ✅     |    ✅    |     ✅      |    ✅    |   ✅   |        ✅        |     ✅     |
-| ECS Cluster                 |     ✅     |    ✅    |     ✅      |    ✅    |   ✅   |        ✅        |     ✅     |
-| ECS Service                 |     ✅     |    ✅    |     ✅      |    ✅    |   ✅   |        ✅        |     ✅     |
-| EKS Cluster                 |     ✅     |    ✅    |     —      |    ✅    |   ✅   |        ✅        |     —     |
-| EKS Node Group              |     ✅     |    ✅    |     ✅      |    ✅    |   ✅   |        ✅        |     ✅     |
-| Karpenter Node Pool         |     ✅     |    —    |     —      |    ✅    |   ✅   |        —        |     —     |
-| RDS DB Instance             |     ✅     |    ✅    |     ✅      |    ✅    |   ✅   |        ✅        |     ✅     |
-| RDS DB Cluster              |     ✅     |    ✅    |     ✅      |    ✅    |   ✅   |        ✅        |     ✅     |
-| DocumentDB Cluster          |     ✅     |    ✅    |     ✅      |    ✅    |   ✅   |        ✅        |     ✅     |
-| SageMaker Notebook Instance |     ✅     |    ✅    |     ✅      |    ✅    |   ✅   |        ✅        |     —     |
-| SageMaker Endpoint          |     ✅     |    ✅    |     —      |    ✅    |   ✅   |        ✅        |     —     |
+| Resource type               | Discovery | Tagging | Scheduling | Metrics | Recommendations | Cost  | Emissions |
+| --------------------------- | :-------: | :-----: | :--------: | :-----: | :-------------: | :---: | :-------: |
+| EC2 Instance                |     ✅     |    ✅    |     ✅      |    ✅    |        ✅        |   ✅   |     ✅     |
+| EBS Volume                  |     ✅     |    ✅    |     —      |    ✅    |        ✅        |   ✅   |     —     |
+| Auto Scaling Group          |     ✅     |    ✅    |     ✅      |    ✅    |        ✅        |   ✅   |     ✅     |
+| ECS Cluster                 |     ✅     |    ✅    |     ✅      |    ✅    |        ✅        |   ✅   |     ✅     |
+| ECS Service                 |     ✅     |    ✅    |     ✅      |    ✅    |        ✅        |   ✅   |     ✅     |
+| EKS Cluster                 |     ✅     |    ✅    |     —      |    ✅    |        ✅        |   ✅   |     —     |
+| EKS Node Group              |     ✅     |    ✅    |     ✅      |    ✅    |        ✅        |   ✅   |     ✅     |
+| Karpenter Node Pool         |     ✅     |    —    |     —      |    ✅    |        —        |   ✅   |     —     |
+| RDS DB Instance             |     ✅     |    ✅    |     ✅      |    ✅    |        ✅        |   ✅   |     ✅     |
+| RDS DB Cluster              |     ✅     |    ✅    |     ✅      |    ✅    |        ✅        |   ✅   |     ✅     |
+| DocumentDB Cluster          |     ✅     |    ✅    |     ✅      |    ✅    |        ✅        |   ✅   |     ✅     |
+| SageMaker Notebook Instance |     ✅     |    ✅    |     ✅      |    ✅    |        ✅        |   ✅   |     —     |
+| SageMaker Endpoint          |     ✅     |    ✅    |     —      |    ✅    |        ✅        |   ✅   |     —     |
 
 The AWS account sync also discovers **EC2 and RDS Reserved Instances**. These are shown at the account level and aren't a resource type.
 
 ## Google Cloud Platform (GCP)
 
-| Resource type     | Discovery | Tagging | Scheduling | Metrics | Cost  | Recommendations | Emissions |
-| ----------------- | :-------: | :-----: | :--------: | :-----: | :---: | :-------------: | :-------: |
-| Compute Engine VM |     ✅     |    ✅    |     ✅      |    —    |   —   |        —        |     —     |
-| Cloud Run Service |     ✅     |    ✅    |     ✅      |    —    |   —   |        —        |     —     |
+| Resource type                      | Discovery | Tagging | Scheduling |
+| ---------------------------------- | :-------: | :-----: | :--------: |
+| Compute Engine VM                  |     ✅     |    ✅    |     ✅      |
+| Cloud Run Service                  |     ✅     |    ✅    |     ✅      |
+| Cloud SQL Instance *(coming soon)* |     🔜     |    🔜    |     🔜      |
 
 ## Microsoft Azure
 
-| Resource type   | Discovery | Tagging | Scheduling | Metrics | Cost  | Recommendations | Emissions |
-| --------------- | :-------: | :-----: | :--------: | :-----: | :---: | :-------------: | :-------: |
-| Virtual Machine |     ✅     |    ✅    |     ✅      |    —    |   —   |        —        |     —     |
-| Container App   |     ✅     |    ✅    |     ✅      |    —    |   —   |        —        |     —     |
+| Resource type                              | Discovery | Tagging | Scheduling |
+| ------------------------------------------ | :-------: | :-----: | :--------: |
+| Virtual Machine                            |     ✅     |    ✅    |     ✅      |
+| Container App                              |     ✅     |    ✅    |     ✅      |
+| PostgreSQL Flexible Server *(coming soon)* |     🔜     |    🔜    |     🔜      |
+| MySQL Flexible Server *(coming soon)*      |     🔜     |    🔜    |     🔜      |
 
 ## MongoDB Atlas
 
-| Resource type | Discovery | Tagging | Scheduling | Metrics | Cost  | Recommendations | Emissions |
-| ------------- | :-------: | :-----: | :--------: | :-----: | :---: | :-------------: | :-------: |
-| Cluster       |     ✅     |    ✅    |     ✅      |    ✅    |   —   |        —        |     —     |
+| Resource type | Discovery | Tagging | Scheduling | Metrics |
+| ------------- | :-------: | :-----: | :--------: | :-----: |
+| Cluster       |     ✅     |    ✅    |     ✅      |    ✅    |
 
 ---
 
