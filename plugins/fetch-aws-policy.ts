@@ -64,7 +64,7 @@ export default function fetchAwsPolicyPlugin(
     },
     async contentLoaded({ content, actions }): Promise<void> {
       const { setGlobalData } = actions;
-      setGlobalData({ awsPolicy: content });
+      setGlobalData({ awsPolicy: content, awsPolicyTemplateUrls: policies });
     },
   };
 }
