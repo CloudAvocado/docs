@@ -42,9 +42,8 @@ export default function AwsIamPolicy({ policyType, title }: AwsIamPolicyProps): 
     <div>
       {templateUrl && (
         <Admonition type="info">
-          This policy is part of a CloudFormation stack that also creates the IAM role CloudAvocado assumes. Review the
-          full template, including the role's trust policy:{' '}
-          <Link to={templateUrl}>{templateUrl.split('/').pop()}</Link>
+          This policy is part of a CloudFormation stack that also creates the IAM role CloudAvocado assumes. To review the
+          role's trust policy as well, see the <Link to={templateUrl}>CloudFormation template</Link>.
         </Admonition>
       )}
       <CodeBlock language="json" title={title}>
