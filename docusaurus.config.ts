@@ -4,6 +4,9 @@ import type * as Preset from '@docusaurus/preset-classic';
 
 // This runs in Node.js - Don't use client-side code here (browser APIs, JSX...)
 
+// Shown in the footer and, via <SupportLink />, in the docs pages.
+const contactEmail = 'info@cloudavocado.com';
+
 const config: Config = {
   title: 'CloudAvocado Docs',
   tagline: 'Dinosaurs are cool',
@@ -29,6 +32,10 @@ const config: Config = {
 
   onBrokenLinks: 'throw',
 
+  customFields: {
+    contactEmail,
+  },
+
   // Even if you don't use internationalization, you can use this field to set
   // useful metadata like html lang. For example, if your site is Chinese, you
   // may want to replace "en" with "zh-Hans".
@@ -39,6 +46,16 @@ const config: Config = {
 
   plugins: [
     './plugins/fetch-aws-policy.ts',
+    [
+      // GitHub Pages can't send server-side 301s, so old URLs get a page that redirects to the new one.
+      '@docusaurus/plugin-client-redirects',
+      {
+        redirects: [
+          { from: '/docs/security/aws-policy', to: '/docs/cloud-setup/aws-iam-policy' },
+          { from: '/docs/category/security', to: '/docs/category/cloud-setup' },
+        ],
+      },
+    ],
   ],
 
   presets: [
@@ -47,6 +64,7 @@ const config: Config = {
       {
         docs: {
           sidebarPath: './sidebars.ts',
+          showLastUpdateTime: true,
           // Please change this to your repo.
           // Remove this to remove the "edit this page" links.
           editUrl:
@@ -123,6 +141,15 @@ const config: Config = {
             {
               label: 'LinkedIn',
               href: 'https://linkedin.com/company/cloudavocado',
+            }
+          ],
+        },
+        {
+          title: 'Contact',
+          items: [
+            {
+              // Plain HTML, so the mailto link doesn't get the "opens in new tab" icon.
+              html: `<a class="footer__link-item" href="mailto:${contactEmail}">${contactEmail}</a>`,
             }
           ],
         },

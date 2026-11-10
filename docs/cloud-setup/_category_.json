@@ -1,0 +1,9 @@
+{
+  "label": "Cloud Setup",
+  "position": 2,
+  "collapsed": false,
+  "link": {
+    "type": "generated-index",
+    "description": "Connect your cloud accounts to CloudAvocado and see which resources and features are supported"
+  }
+}

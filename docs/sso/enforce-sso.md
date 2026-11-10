@@ -49,5 +49,5 @@ After enabling **Enforce Single Sign-On**, users will no longer see the password
 ---
 
 :::info
-**Need help?** Our support team is here to assist you with any questions or issues you may encounter: [support@cloudavocado.com](mailto:support@cloudavocado.com).
+**Need help?** Our support team is here to assist you with any questions or issues you may encounter: <SupportLink />.
 :::

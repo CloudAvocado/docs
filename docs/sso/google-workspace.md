@@ -123,5 +123,5 @@ Make sure to check the following:
 ---
 
 :::info
-**Need help?** Our support team is here to assist you with any questions or issues you may encounter: [support@cloudavocado.com](mailto:support@cloudavocado.com).
+**Need help?** Our support team is here to assist you with any questions or issues you may encounter: <SupportLink />.
 :::

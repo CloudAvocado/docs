@@ -14,5 +14,5 @@ Whether you're new to CloudAvocado or looking to explore specific features, our 
 ---
 
 :::info
-**Need help?** Our support team is here to assist you with any questions or issues you may encounter: [support@cloudavocado.com](mailto:support@cloudavocado.com).
+**Need help?** Our support team is here to assist you with any questions or issues you may encounter: <SupportLink />.
 :::

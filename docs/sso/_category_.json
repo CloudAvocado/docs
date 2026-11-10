@@ -1,6 +1,7 @@
 {
   "label": "Single Sign-On",
-  "position": 2,
+  "position": 3,
+  "collapsed": false,
   "link": {
     "type": "generated-index",
     "description": "Configure Single Sign-On on CloudAvocado"
