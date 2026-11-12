@@ -8,6 +8,8 @@ import DocCardList from '@theme/DocCardList';
 
 # Welcome
 
+Learn how to set up CloudAvocado and use its features and capabilities.
+
 <DocCardList />
 
 ---
