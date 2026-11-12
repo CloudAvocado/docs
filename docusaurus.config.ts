@@ -9,7 +9,7 @@ const contactEmail = 'info@cloudavocado.com';
 
 const config: Config = {
   title: 'CloudAvocado Docs',
-  tagline: 'Dinosaurs are cool',
+  tagline: 'Guides and reference for CloudAvocado',
   favicon: 'img/favicon.ico',
 
   // Future flags, see https://docusaurus.io/docs/api/docusaurus-config#future
@@ -51,9 +51,19 @@ const config: Config = {
       '@docusaurus/plugin-client-redirects',
       {
         redirects: [
-          { from: '/docs/security/aws-policy', to: '/docs/cloud-setup/aws-iam-policy' },
-          { from: '/docs/category/security', to: '/docs/category/cloud-setup' },
+          { from: '/docs/security/aws-policy', to: '/cloud-setup/aws-iam-policy' },
+          { from: '/docs/category/security', to: '/category/cloud-setup' },
         ],
+        // The docs used to live under /docs. Keep every old URL working.
+        createRedirects(existingPath: string) {
+          if (existingPath === '/') {
+            return ['/docs', '/docs/welcome'];
+          }
+          if (existingPath.endsWith('.html')) {
+            return []; // Skip the 404 page.
+          }
+          return [`/docs${existingPath}`];
+        },
       },
     ],
   ],
@@ -63,6 +73,8 @@ const config: Config = {
       'classic',
       {
         docs: {
+          // Serve the docs at the site root, with the welcome page as the homepage.
+          routeBasePath: '/',
           sidebarPath: './sidebars.ts',
           showLastUpdateTime: true,
           // Please change this to your repo.
@@ -70,21 +82,8 @@ const config: Config = {
           editUrl:
             'https://github.com/CloudAvocado/docs/tree/gh-pages/',
         },
-        blog: {
-          showReadingTime: true,
-          feedOptions: {
-            type: ['rss', 'atom'],
-            xslt: true,
-          },
-          // Please change this to your repo.
-          // Remove this to remove the "edit this page" links.
-          editUrl:
-            'https://github.com/CloudAvocado/docs/tree/gh-pages/',
-          // Useful options to enforce blogging best practices
-          onInlineTags: 'warn',
-          onInlineAuthors: 'warn',
-          onUntruncatedBlogPosts: 'warn',
-        },
+        // The blog lives on cloudavocado.com; the navbar links there.
+        blog: false,
         theme: {
           customCss: './src/css/custom.css',
         },
@@ -106,18 +105,12 @@ const config: Config = {
       },
       items: [
         {
-          label: 'Docs',
-          type: 'docSidebar',
-          sidebarId: 'docSidebar',
-          position: 'left',
-        },
-        {
           label: 'Blog',
           href: 'https://cloudavocado.com/blog',
           position: 'left',
         },
         {
-          label: 'Dashboard',
+          label: 'Open CloudAvocado',
           href: 'https://app.cloudavocado.com',
           position: 'right',
         },

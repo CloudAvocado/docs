@@ -1,5 +1,6 @@
 ---
 sidebar_position: 1
+description: Set up SAML single sign-on with Google Workspace so users in your organization sign in to CloudAvocado with their Google accounts.
 ---
 
 # Google Workspace Integration
@@ -18,7 +19,7 @@ Start by registering CloudAvocado as a custom SAML application in your Google Wo
 
 ### Add Custom SAML App
 
-1. Open the [Google Admin Portal](https://admin.google.com)
+1. Open the [Google Admin console](https://admin.google.com)
 2. Go to **Apps** → **Web and mobile apps**
 3. Click **Add App** → **Add custom SAML app**
 4. Enter **App name**: `CloudAvocado`
@@ -27,7 +28,7 @@ Start by registering CloudAvocado as a custom SAML application in your Google Wo
 ### Download Identity Provider Metadata
 
 6. On the **Google Identity Provider details** screen, download the **IdP metadata** file
-7. Click **Continue** (keep this browser tab open – we'll return here shortly)
+7. Click **Continue**, and keep this browser tab open for Step 3
 
 ## Step 2: Configure Single Sign-On in CloudAvocado
 
@@ -35,13 +36,13 @@ Now configure CloudAvocado to accept authentication from your Google Workspace i
 
 ### Configure SSO Settings
 
-1. Open the [CloudAvocado Dashboard](https://app.cloudavocado.com)
+1. Open [CloudAvocado](https://app.cloudavocado.com)
 2. Go to [Single Sign-On Settings](https://app.cloudavocado.com/settings/sso)
 3. Configure the following:
-   - **Identity Provider name**: Enter a recognizable name (e.g., `Google Workspace`)
+   - **Identity Provider name**: Enter a recognizable name (for example, `Google Workspace`)
    - **Domain Names**: Add your organization's domain
    - **SAML 2.0 Metadata File**: Select the IdP metadata file you downloaded in the previous step
-4. Uncheck **Require Signed Assertions**
+4. Uncheck **Require Signed Assertions**. Once **Signed response** is turned on in Step 3, Google Workspace signs the whole SAML response rather than the assertion inside it, so CloudAvocado must not require a signed assertion
 5. Click **Save**
 
 ### Verify Domain Ownership
@@ -57,11 +58,11 @@ Verification typically completes within minutes but may take up to 24 hours.
 
 ### Copy Service Provider Details
 
-9. Once verified, copy the **ACS URL** and **Entity ID** from CloudAvocado (keep these values handy for the next step)
+10. Once verified, copy the **ACS URL** and **Entity ID** from CloudAvocado. You'll need them in the next step
 
 ## Step 3: Complete Google Workspace Configuration
 
-Return to the Google Admin Portal browser tab to finish the SAML app setup.
+Return to the Google Admin console browser tab to finish the SAML app setup.
 
 ### Configure Service Provider Details
 
@@ -86,25 +87,19 @@ Return to the Google Admin Portal browser tab to finish the SAML app setup.
 
 ### Enable User Access
 
-6. Ensure **User access** is set to **ON** for the CloudAvocado app
-
-:::info
-This allows your users to authenticate via Google Workspace.
-:::
+6. Set **User access** to **ON** for everyone, or for the organizational units and groups that should be able to sign in to CloudAvocado
 
 ## Step 4: Test Your SSO Integration
 
 Verify that single sign-on is working correctly before rolling out to users in your organization.
 
-1. Go to [CloudAvocado Login](https://app.cloudavocado.com/login)
+1. Go to the [CloudAvocado login page](https://app.cloudavocado.com/login)
 2. Enter your Google Workspace email address
 3. Click **Continue**
 4. Click the **Sign in with [Your Identity Provider]** button (skip password entry)
 5. You should be redirected to Google for authentication, then back to CloudAvocado
 
-:::tip[Success]
-You're all set! Your organization's users can now sign in into CloudAvocado using their Google Workspace credentials.
-:::
+Your organization's users can now sign in to CloudAvocado with their Google Workspace accounts.
 
 ## Troubleshooting
 

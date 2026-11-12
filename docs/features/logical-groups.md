@@ -17,13 +17,14 @@ A logical group is a set of resources that start and stop together, in an order 
 
 ## How It Works
 
+- A group can include resources from any cloud account or provider, for example EC2 instances and a MongoDB Atlas cluster.
 - A resource can be in only one group at a time.
 - A resource that joins a group takes the group's team and schedule. You change them on the group, not on the resource.
 - A resource removed from a group keeps its team but loses the group's schedule. Deleting a group doesn't delete its resources.
 
 ## Start and Stop Order
 
-Each resource has a start delay and a stop delay, from 0 to 60 minutes. When the group starts or stops, each resource waits for its delay. By default, resources stop in the reverse of their start order.
+Each resource has a start delay and a stop delay, from 0 to 60 minutes. When the group starts or stops, each resource waits for its delay.
 
 | Resource    | Start delay | Stop delay |
 | ----------- | ----------- | ---------- |
@@ -43,15 +44,7 @@ Set the `cloudavocado_group_name` tag to the group's name, and the resource join
 cloudavocado_group_name = web-app-staging
 ```
 
-To move a resource to another group, change the value. To take it out of its group, set an empty value.
-
-:::warning
-The tag takes priority over changes made in CloudAvocado. A tagged resource removed from its group rejoins on the next sync, and a deleted group is created again. Change the tag instead.
-:::
-
-:::info
-`cloudavocado_group_name` is one of the [reserved CloudAvocado tags](reserved-tags.md).
-:::
+The [logical group tag](reserved-tags.md#logical-group-tag) reference explains how to move or remove a tagged resource, and why the tag takes priority over changes made in CloudAvocado.
 
 ---
 

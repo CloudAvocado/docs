@@ -11,8 +11,9 @@ CloudAvocado tags, also called reserved tags, let you manage resources from your
 ## Use Cases
 
 - **Set up resources as you create them.** Tagged resources arrive in CloudAvocado with the right team, schedule, or logical group.
-- **Keep ownership and schedules in code,** reviewed and versioned with the rest of your infrastructure.
-- **Protect critical resources,** like a production database, from being stopped.
+- **Keep ownership and schedules in code.** They're reviewed and versioned with the rest of your infrastructure.
+- **Protect critical resources.** Stop protection keeps a production database from ever being stopped.
+
 For example, this Terraform setting tags every AWS resource in a stack, so the whole stack joins one logical group:
 
 ```hcl
@@ -33,8 +34,9 @@ provider "aws" {
 | `cloudavocado_schedule_id`     | A schedule ID        | [Assigns a schedule](#schedule-tag)                                   |
 | `cloudavocado_group_name`      | A logical group name | [Adds the resource to a logical group](#logical-group-tag)            |
 | `cloudavocado_stop_protection` | `true`               | [Keeps CloudAvocado from stopping the resource](#stop-protection-tag) |
+
 :::info
-Tag changes take effect the next time CloudAvocado syncs your cloud account, not right away.
+Tag changes take effect at the next [sync of your cloud account](../cloud-setup/cloud-accounts.md), not right away.
 :::
 
 ### Team Tag
@@ -45,7 +47,7 @@ Assigns the resource to the team with that name:
 cloudavocado_team_name = backend
 ```
 
-If no team has that name, CloudAvocado creates one. CloudAvocado also reads a tag named `Team` by default, and you can change that key in the cloud settings.
+If no team has that name, one is created. By default, a tag named `Team` is read as well, and you can change that key in the cloud settings.
 
 ### Schedule Tag
 
@@ -55,7 +57,11 @@ Assigns the [schedule](schedules.md) with that ID, shown on the schedule in Clou
 cloudavocado_schedule_id = 6650f1c2a9e4b0a1d2c3f4e5
 ```
 
-The tag works both ways: when you change a resource's schedule in CloudAvocado, its tag is updated too.
+The tag works both ways: when you change a resource's schedule in CloudAvocado, its tag is updated too. To take a resource off its schedule, set an empty value.
+
+:::warning
+If an infrastructure-as-code tool manages this tag, change schedules in code. Otherwise, the tool sets the tag back on its next run.
+:::
 
 ### Logical Group Tag
 
@@ -65,17 +71,21 @@ Adds the resource to the [logical group](logical-groups.md) with that name:
 cloudavocado_group_name = web-app-staging
 ```
 
-If no group has that name, CloudAvocado creates one.
+If no group has that name, one is created. To move a resource to another group, change the value. To take it out of its group, set an empty value.
+
+:::warning
+The tag takes priority over changes made in CloudAvocado. A tagged resource removed from its group rejoins on the next sync, and a deleted group is created again. Change the tag instead.
+:::
 
 ### Stop Protection Tag
 
-Keeps CloudAvocado from stopping the resource, whether on a schedule, in a logical group, or on demand:
+Prevents the resource from being stopped, whether by a schedule, by a logical group, or on demand:
 
 ```
 cloudavocado_stop_protection = true
 ```
 
-CloudAvocado can still start it.
+It can still be started.
 
 ## Tag Priority
 

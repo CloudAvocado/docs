@@ -1,14 +1,13 @@
 ---
+slug: /
 sidebar_position: 1
+description: Learning materials for CloudAvocado's capabilities and features, from cloud accounts and schedules to recommendations and single sign-on.
 ---
 
 import DocCardList from '@theme/DocCardList';
 
 # Welcome
 
-Whether you're new to CloudAvocado or looking to explore specific features, our documentation is organized to help you find what you need quickly. Browse through tutorials, integration guides, and reference materials to make the most of the platform.
-
-<br />
 <DocCardList />
 
 ---

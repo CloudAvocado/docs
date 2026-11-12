@@ -1,5 +1,5 @@
 ---
-sidebar_position: 2
+sidebar_position: 3
 description: AWS IAM policies CloudAvocado uses to access your AWS resources, the recommended default policy and a read-only alternative.
 ---
 
@@ -18,3 +18,9 @@ Discovery, tagging, scheduling, metrics, recommendations, cost, and emissions. T
 Discovery, metrics, recommendations, cost, and emissions. Tagging and scheduling are turned off.
 
 <AwsIamPolicy policyType="readonly" title="cloudavocado-readonly-policy.json" />
+
+---
+
+:::info
+**Need help?** Our support team is here to assist you with any questions or issues you may encounter: <SupportLink />.
+:::

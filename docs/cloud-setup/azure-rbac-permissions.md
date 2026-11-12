@@ -1,5 +1,5 @@
 ---
-sidebar_position: 4
+sidebar_position: 5
 description: Azure custom roles CloudAvocado's service principal needs on each subscription you connect, the recommended default role and a read-only alternative.
 ---
 

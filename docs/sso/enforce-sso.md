@@ -1,21 +1,22 @@
 ---
 sidebar_position: 3
+description: Require every user in your organization to sign in through your SSO integration instead of with a password.
 ---
 
 # Enforce Single Sign-On
 
-Require all users in your organization to sign in only via the configured SSO integration to improve organizational security and compliance.
+Require all users in your organization to sign in through your SSO integration instead of with a password.
 
 ## What You'll Need
 
 - CloudAvocado account with admin access
-- A configured and tested SSO integration (e.g., [Google Workspace](./google-workspace.md), [Okta](./okta.md), etc.)
+- A configured and tested SSO integration, for example [Google Workspace](./google-workspace.md) or [Okta](./okta.md)
 
 ## Step 1: Verify Your SSO Integration
 
 Before enforcing SSO, ensure your integration is working correctly.
 
-1. Open the [CloudAvocado Dashboard](https://app.cloudavocado.com)
+1. Open [CloudAvocado](https://app.cloudavocado.com)
 2. Go to [Single Sign-On Settings](https://app.cloudavocado.com/settings/sso)
 3. Verify that your SSO integration shows **Domain Verification Status** as **VERIFIED**
 4. Test the SSO login flow to confirm it works as expected
@@ -28,7 +29,7 @@ Do not enable **Enforce Single Sign-On** until you've successfully tested the SS
 
 Once your SSO integration is verified and tested, you can enforce it for all users.
 
-1. Open the [CloudAvocado Dashboard](https://app.cloudavocado.com)
+1. Open [CloudAvocado](https://app.cloudavocado.com)
 2. Go to [Single Sign-On Settings](https://app.cloudavocado.com/settings/sso)
 3. Click **Edit**
 4. Check **Enforce Single Sign-On**
@@ -40,7 +41,7 @@ After enabling **Enforce Single Sign-On**, users will no longer see the password
 
 ## Troubleshooting
 
-### Users report they can't log in
+### Users can't log in?
 
 1. Confirm the user's email domain matches your verified domain
 2. Check that user access is enabled in your identity provider

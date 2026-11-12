@@ -1,5 +1,6 @@
 ---
 sidebar_position: 2
+description: Set up SAML single sign-on with Okta so users in your organization sign in to CloudAvocado with their Okta accounts.
 ---
 
 # Okta Integration
@@ -18,13 +19,13 @@ Start by creating a SAML app integration for CloudAvocado in your Okta account.
 
 ### Create SAML App Integration
 
-1. Open the [Okta Admin Console](https://login.okta.com)
+1. Open your **Okta Admin Console** (`https://<your-org>-admin.okta.com`)
 2. Go to **Applications** → **Applications**
 3. Click **Create App Integration** → **SAML 2.0**, then click **Next**
 4. Enter **App name**: `CloudAvocado`
 5. Click **Next**
-6. Enter **Single sign-on URL**: `https://app.cloudavocado.com/api/auth/sso/saml2/XXXXXXXXXXXXXXXXXXXXXXXX/login/callback` (we'll update this after getting the **ACS URL** from CloudAvocado)
-7. Enter **Audience URI (SP Entity ID)**: `cloudavocado.com` (we'll update this after getting the **Entity ID** from CloudAvocado)
+6. Enter a placeholder **Single sign-on URL**: `https://app.cloudavocado.com/api/auth/sso/saml2/XXXXXXXXXXXXXXXXXXXXXXXX/login/callback`. You'll replace it with the **ACS URL** from CloudAvocado in Step 3
+7. Enter a placeholder **Audience URI (SP Entity ID)**: `cloudavocado.com`. You'll replace it with the **Entity ID** from CloudAvocado in Step 3
 8. Select **Name ID format**: `EmailAddress`
 9. Select **Application username**: `Email`
 10. On **Attribute Statements**, add the following attribute mappings:
@@ -36,14 +37,14 @@ Start by creating a SAML app integration for CloudAvocado in your Okta account.
    | `lastName`  | `user.lastName`  |
 
 11. Click **Next**
-12. Click **Finish** (keep this browser tab open – we'll return here shortly)
+12. Click **Finish**, and keep this browser tab open for Step 3
 
 ### Download Identity Provider Metadata
 
-1. Go to the **Sign On** tab of the SAML app integration
-2. Copy the **Metadata URL**
-3. Open a new tab and paste the **Metadata URL** into the address bar to open its contents in the browser
-4. Save the file to your computer (e.g., as `okta-metadata.xml`)
+13. Go to the **Sign On** tab of the SAML app integration
+14. Copy the **Metadata URL**
+15. Open a new tab and paste the **Metadata URL** into the address bar to open its contents in the browser
+16. Save the file to your computer (for example, as `okta-metadata.xml`)
 
 ## Step 2: Configure Single Sign-On in CloudAvocado
 
@@ -51,20 +52,21 @@ Now configure CloudAvocado to accept authentication from your Okta identity prov
 
 ### Configure SSO Settings
 
-1. Open the [CloudAvocado Dashboard](https://app.cloudavocado.com)
+1. Open [CloudAvocado](https://app.cloudavocado.com)
 2. Go to [Single Sign-On Settings](https://app.cloudavocado.com/settings/sso)
 3. Configure the following:
-   - **Identity Provider name**: Enter a recognizable name (e.g., `Okta`)
+   - **Identity Provider name**: Enter a recognizable name (for example, `Okta`)
    - **Domain Names**: Add your organization's domain
    - **SAML 2.0 Metadata File**: Select the IdP metadata file you downloaded in the previous step
-4. Click **Save**
+4. Leave **Require Signed Assertions** checked. Okta signs both the SAML response and the assertion by default
+5. Click **Save**
 
 ### Verify Domain Ownership
 
-5. Log into your DNS management console for your domain
-6. Copy the **TXT Record Value** displayed in CloudAvocado
-7. Add this TXT record to your domain's DNS management
-8. Wait for **Domain Verification Status** to show **VERIFIED**
+6. Log into your DNS management console for your domain
+7. Copy the **TXT Record Value** displayed in CloudAvocado
+8. Add this TXT record to your domain's DNS management
+9. Wait for **Domain Verification Status** to show **VERIFIED**
 
 :::info
 Verification typically completes within minutes but may take up to 24 hours.
@@ -72,7 +74,7 @@ Verification typically completes within minutes but may take up to 24 hours.
 
 ### Copy Service Provider Details
 
-9. Once verified, copy the **ACS URL** and **Entity ID** from CloudAvocado (keep these values handy for the next step)
+10. Once verified, copy the **ACS URL** and **Entity ID** from CloudAvocado. You'll need them in the next step
 
 ## Step 3: Complete SAML App Integration in Okta
 
@@ -90,22 +92,20 @@ Return to the Okta Admin Console browser tab to complete the SAML app integratio
 
 ### Configure People/Groups Assignments
 
-1. Go to **Assignments** → **Assign**
-2. Assign the users or groups who should have access to CloudAvocado
+6. Go to **Assignments** → **Assign**
+7. Assign the users or groups who should have access to CloudAvocado
 
 ## Step 4: Test Your SSO Integration
 
 Verify that single sign-on is working correctly before rolling out to users in your organization.
 
-1. Go to [CloudAvocado Login](https://app.cloudavocado.com/login)
+1. Go to the [CloudAvocado login page](https://app.cloudavocado.com/login)
 2. Enter your email address
 3. Click **Continue**
 4. Click the **Sign in with [Your Identity Provider]** button (skip password entry)
 5. You should be redirected to Okta for authentication, then back to CloudAvocado
 
-:::tip[Success]
-You're all set! Your organization's users can now sign in into CloudAvocado using their Okta credentials.
-:::
+Your organization's users can now sign in to CloudAvocado with their Okta accounts.
 
 ## Troubleshooting
 

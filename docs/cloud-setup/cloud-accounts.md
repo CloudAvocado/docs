@@ -5,20 +5,46 @@ description: How CloudAvocado connects to AWS, Google Cloud, Azure, and MongoDB 
 
 # Cloud Accounts
 
-CloudAvocado connects to each of your cloud provider accounts to discover and manage your resources. Each provider uses its own type of credential and needs its own permissions.
+CloudAvocado connects to each of your cloud provider accounts to discover and manage your resources. Each account is synced once an hour to pick up new resources and tag changes. Each provider uses its own type of credential and needs its own permissions.
 
-## Authentication Methods
+CloudAvocado walks you through adding an account step by step, from creating the credential in your provider to entering it. This page covers what you need before you start and how to keep access working afterward.
+
+## Supported Providers
 
 Each connection covers one scope, such as a single AWS account or Azure subscription. To manage more than one, add a connection for each.
 
-| Provider      | Authentication method                                                                          | Scope        | Permissions                                              |
-| ------------- | ---------------------------------------------------------------------------------------------- | ------------ | -------------------------------------------------------- |
-| AWS           | Cross-account IAM role assumed with an external ID (recommended); IAM user access key (legacy) | AWS account  | [AWS IAM Policy](./aws-iam-policy.md)                    |
-| Google Cloud  | Service account key file (JSON)                                                                | Project      | [Google Cloud IAM Permissions](./gcp-iam-permissions.md) |
-| Azure         | Service principal (app registration) with a client secret                                      | Subscription | [Azure RBAC Permissions](./azure-rbac-permissions.md)    |
-| MongoDB Atlas | Service account with a client ID and client secret                                             | Project      | Project Cluster Manager role on the project              |
+### Amazon Web Services (AWS)
 
-For AWS, use the IAM role. CloudAvocado gets temporary credentials each time it assumes the role, so there's no long-lived key to store or rotate, and deleting the CloudFormation stack revokes access. IAM user access keys are a legacy option kept for existing connections.
+**Scope:** one AWS account per connection. **Permissions:** [AWS IAM Policy](./aws-iam-policy.md).
+
+| Auth method             | Description                                                                                                                                                                                                                       |
+| ----------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **IAM Role**            | Recommended. A cross-account role assumed with an external ID. CloudAvocado gets temporary credentials each time it assumes the role, so there's no key to store or rotate, and deleting the CloudFormation stack revokes access. |
+| **IAM User Access Key** | Legacy. An access key ID and secret access key, kept for existing connections.                                                                                                                                                    |
+
+### Google Cloud Platform (GCP)
+
+**Scope:** one project per connection. **Permissions:** [Google Cloud IAM Permissions](./gcp-iam-permissions.md).
+
+| Auth method             | Description                                           |
+| ----------------------- | ----------------------------------------------------- |
+| **Service Account Key** | A JSON key file for a service account in the project. |
+
+### Microsoft Azure
+
+**Scope:** one subscription per connection. **Permissions:** [Azure RBAC Permissions](./azure-rbac-permissions.md).
+
+| Auth method           | Description                                                     |
+| --------------------- | --------------------------------------------------------------- |
+| **Service Principal** | An app registration in Microsoft Entra ID with a client secret. |
+
+### MongoDB Atlas
+
+**Scope:** one project per connection. **Permissions:** Project Cluster Manager.
+
+| Auth method         | Description                                                         |
+| ------------------- | ------------------------------------------------------------------- |
+| **Service Account** | A client ID and client secret for a service account in the project. |
 
 ## Before You Start
 
