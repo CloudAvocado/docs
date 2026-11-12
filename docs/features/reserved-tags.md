@@ -95,3 +95,9 @@ To bring it back, delete the tag.
 
 1. `cloudavocado_group_name` takes priority over `cloudavocado_team_name` and `cloudavocado_schedule_id`.
 2. `cloudavocado_team_name` takes priority over your own team tag, such as `Team`.
+
+---
+
+:::info
+**Need help?** Our support team is here to assist you with any questions or issues you may encounter: <SupportLink />.
+:::

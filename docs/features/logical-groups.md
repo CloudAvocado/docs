@@ -52,3 +52,9 @@ The tag takes priority over changes made in CloudAvocado. A tagged resource remo
 :::info
 `cloudavocado_group_name` is one of the [reserved CloudAvocado tags](reserved-tags.md).
 :::
+
+---
+
+:::info
+**Need help?** Our support team is here to assist you with any questions or issues you may encounter: <SupportLink />.
+:::

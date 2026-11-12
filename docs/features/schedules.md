@@ -65,3 +65,9 @@ If an infrastructure-as-code tool manages this tag, change schedules in code. Ot
 :::info
 `cloudavocado_schedule_id` is one of the [reserved CloudAvocado tags](reserved-tags.md).
 :::
+
+---
+
+:::info
+**Need help?** Our support team is here to assist you with any questions or issues you may encounter: <SupportLink />.
+:::
