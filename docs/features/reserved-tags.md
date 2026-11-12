@@ -1,7 +1,7 @@
 ---
 sidebar_position: 3
 sidebar_label: CloudAvocado Tags
-description: Use reserved tags on your cloud resources to assign teams, schedules, and logical groups, turn on stop protection, or hide resources from CloudAvocado.
+description: Use reserved tags on your cloud resources to assign teams, schedules, and logical groups, or turn on stop protection.
 ---
 
 # CloudAvocado Tags
@@ -13,8 +13,6 @@ CloudAvocado tags, also called reserved tags, let you manage resources from your
 - **Set up resources as you create them.** Tagged resources arrive in CloudAvocado with the right team, schedule, or logical group.
 - **Keep ownership and schedules in code,** reviewed and versioned with the rest of your infrastructure.
 - **Protect critical resources,** like a production database, from being stopped.
-- **Keep resources out of CloudAvocado,** like short-lived CI runners.
-
 For example, this Terraform setting tags every AWS resource in a stack, so the whole stack joins one logical group:
 
 ```hcl
@@ -35,8 +33,6 @@ provider "aws" {
 | `cloudavocado_schedule_id`     | A schedule ID        | [Assigns a schedule](#schedule-tag)                                   |
 | `cloudavocado_group_name`      | A logical group name | [Adds the resource to a logical group](#logical-group-tag)            |
 | `cloudavocado_stop_protection` | `true`               | [Keeps CloudAvocado from stopping the resource](#stop-protection-tag) |
-| `cloudavocado_ignored`         | `true`               | [Hides the resource from CloudAvocado](#ignored-tag)                  |
-
 :::info
 Tag changes take effect the next time CloudAvocado syncs your cloud account, not right away.
 :::
@@ -80,16 +76,6 @@ cloudavocado_stop_protection = true
 ```
 
 CloudAvocado can still start it.
-
-### Ignored Tag
-
-Makes CloudAvocado skip the resource, so it doesn't appear in CloudAvocado:
-
-```
-cloudavocado_ignored = true
-```
-
-To bring it back, delete the tag.
 
 ## Tag Priority
 
