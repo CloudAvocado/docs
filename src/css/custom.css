@@ -28,3 +28,15 @@
   --ifm-color-primary-lightest: #4fddbf;
   --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.3);
 }
+
+/* Markdown tables fill the content width. Wide tables scroll inside the wrapper. */
+.table-wrapper {
+  overflow-x: auto;
+  margin-bottom: var(--ifm-spacing-vertical);
+}
+
+.table-wrapper > table {
+  display: table;
+  width: 100%;
+  margin-bottom: 0;
+}
